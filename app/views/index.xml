@@ -1,7 +1,14 @@
 <Alloy>
-		<Window class="container">
-		<Label id="label">Diary</Label>
-		<Button id="buttonAdd" onClick="addNote"></Button>
-		<Button id="buttonView" onClick="viewNote"></Button>
-	</Window>
+	<TabGroup>
+		<Tab id="tab1" title="View Notes">
+			<Window id="win1">
+				<Label id="label1" onClick="clickTab1">View Notes</Label>
+			</Window>
+		</Tab>
+		<Tab id="tab2" title="Add Notes" >
+			<Window id="win2">
+				<Label id="label2">Add Notes</Label>
+			</Window>
+		</Tab>
+	</TabGroup>
 </Alloy>

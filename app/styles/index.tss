@@ -1,3 +1,6 @@
+"Window": {
+	backgroundImage: "/images/diary.jpg"
+},
 ".container": {
 	backgroundColor:'white',
 	layout:'vertical'
@@ -15,17 +18,17 @@
 	color: 'black'
 },
 "Button":{
-	top:'20dp',
+	bottom: 0,
 	color: 'black',
 	backgroundColor: '#ffffff',
 	height: '60dp',
-	width: '150dp',
+	width: '50%',
 	borderRadius: 10,
-	borderColor: "#000000"
+	borderColor: "#000000",
+	opacity: 0.30
 },
-"#buttonAdd":{
-	title:'Add Note'
-},
-"#buttonView":{
-	title:'View Notes'
+"TabGroup": {
+	backgroundColor: 'red'
 }
+
+
