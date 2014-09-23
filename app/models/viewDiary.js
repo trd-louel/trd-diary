@@ -3,10 +3,10 @@ exports.definition = {
 		
 		adapter:{
 			"type": "sql",
-			"collection_name":"author_info",
+			"collection_name":"contents",
 			"db_file": "/db_test.sqlite",
 			"db_name": "db_test",
-			"idAttribute": "author_id",
+			"idAttribute":"content_id",
 			"remoteBackup":false
 		}
 	}

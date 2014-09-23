@@ -1,5 +1,6 @@
 <Alloy>
 	<Window id="viewDiary">
-		
+		<TableView id = "authorTbl">
+		</TableView>
 	</Window>
 </Alloy>

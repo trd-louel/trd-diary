@@ -1,14 +1,20 @@
 <Alloy>
+	
 	<TabGroup>
 		<Tab id="tab1" title="View Notes">
-			<Window id="win1">
-				<Label id="label1" onClick="clickTab1">View Notes</Label>
-			</Window>
+			<NavigationWindow id= "nwin1">
+				<Window id="win1">
+					<Label id="label1" onClick="clickTab1">View Notes</Label>
+				</Window>
+			</NavigationWindow>
 		</Tab>
 		<Tab id="tab2" title="Add Notes" >
-			<Window id="win2">
-				<Label id="label2">Add Notes</Label>
-			</Window>
+			<NavigationWindow id= "nwin2">
+				<Window id="win2">
+					<Label id="label2" onclick="clickTab2">Add Notes</Label>
+				</Window>
+			</NavigationWindow>
 		</Tab>
 	</TabGroup>
+	
 </Alloy>
