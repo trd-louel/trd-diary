@@ -1,20 +1,16 @@
 <Alloy>
-	
-	<TabGroup>
-		<Tab id="tab1" title="View Notes">
-			<NavigationWindow id= "nwin1">
-				<Window id="win1">
-					<Label id="label1" onClick="clickTab1">View Notes</Label>
-				</Window>
-			</NavigationWindow>
-		</Tab>
-		<Tab id="tab2" title="Add Notes" >
-			<NavigationWindow id= "nwin2">
-				<Window id="win2">
-					<Label id="label2" onclick="clickTab2">Add Notes</Label>
-				</Window>
-			</NavigationWindow>
-		</Tab>
-	</TabGroup>
+
+	<NavigationWindow id="navigation">
+		<Window>
+			<View class="actions">
+				<View class="action" id="btnviewContainer">
+					<Button title="View Notes" onClick="btnView" class="btnAction" id="btnView"></Button>
+				</View>
+				<View class="action" id="btnaddContainer">
+					<Button title="Add Notes" tintColor="red" class="btnAction" id="btnAdd"></Button>
+				</View>
+			</View>
+		</Window>
+	</NavigationWindow>
 	
 </Alloy>

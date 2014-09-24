@@ -1,10 +1,8 @@
-
-function clickTab1(e){
+$.navigation.open();
+function btnView(e){
+	alert('asdf');
 	 var getAuthors = Alloy.createController('viewDiary').getView();
-	$.nwin1.openWindow(getAuthors);
+	$.navigation.openWindow(getAuthors);
 }
 
-function clickTab2(){
-	//add to db
-}
-$.index.open();
+

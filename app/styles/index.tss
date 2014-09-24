@@ -17,18 +17,41 @@
 	},
 	color: 'black'
 },
-"Button":{
-	bottom: 0,
-	color: 'black',
-	backgroundColor: '#ffffff',
-	height: '60dp',
-	width: '50%',
-	borderRadius: 10,
-	borderColor: "#000000",
-	opacity: 0.30
-},
-"TabGroup": {
-	backgroundColor: 'red'
-}
 
+".actions":{
+	bottom: 0,
+	height: 44,
+	backgroundColor: '#FFCCFF'
+},
+".btnAction":{
+	height: '100%',
+	width: '80%',
+	backgroundColor: '#FF6633'
+	
+},
+"#btnviewContainer":{
+	left: 0,
+},
+"#btnaddContainer":{
+	left: '50%',
+	right: '2%'
+},
+".action":{
+	width: '50%',
+	height: 44,
+	color: '#FF6633',
+	font : {
+		fontFamily : 'Helvetica',
+		fontSize : 12,
+		fontStyle : 'normal',
+		fontWeight : 'normal'		
+	},
+	style: Titanium.UI.iPhone.SystemButtonStyle.PLAIN
+},
+"#btnView":{
+	backgroundImage: '/images/view-diary1.jpg'
+},
+"#btnAdd":{
+	backgroundImage: '/images/add-diary.jpg'
+}
 
