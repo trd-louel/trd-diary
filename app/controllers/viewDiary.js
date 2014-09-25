@@ -1,15 +1,16 @@
 
-//exports.baseController = "index";
-
-//var table2 = authorCollection.config.adapter.collection_name('diary_notes');
-
+	var authorCollection = Alloy.createCollection('db_diary');
+	var table1 = authorCollection.config.adapter.collection_name;
+	
+	var contentCollection = Alloy.createCollection('viewDiary');
+	var table = contentCollection.config.adapter.collection_name;
+	contentCollection = Alloy.Collections.instance('viewDiary');
 function init(){
 	getAuthorList();
 }
 
 function getAuthorList(){
-	var authorCollection = Alloy.createCollection('db_diary');
-	var table1 = authorCollection.config.adapter.collection_name;
+	
 	authorCollection = Alloy.Collections.instance('db_diary');
 	var tblView1 = Ti.UI.createTableView();
 	var sql = 'SELECT * FROM ' +table1;	
@@ -26,7 +27,7 @@ function getAuthorList(){
 			'title' : name,
 			'c_id' : id
 		}); 
-		row.addEventListener('click', getContent);
+		row.addEventListener('click', getDate);
 		authorArr.push(row);	
 	}
 	tblView1.setData(authorArr);
@@ -35,37 +36,75 @@ function getAuthorList(){
 	
 }
 
-function getContent(row_evt){
+function getDate(row_evt){
+
 	
-	var contentCollection = Alloy.createCollection('viewDiary');
-	var table = contentCollection.config.adapter.collection_name;
-	contentCollection = Alloy.Collections.instance('viewDiary');
-	//var view = Ti.UI.createView();
-	//view.accessibilityHidden=true;
 	var tblView = Ti.UI.createTableView();
+	var id = row_evt.source.c_id; 
 	
-	var sql = 'SELECT * FROM ' +table+ ' WHERE content_id=1';
+	var sql = 'SELECT * FROM ' +table+ ' WHERE content_id=' +id;
 	contentCollection.fetch({ query: sql});
-	
-	var contentArr = [];
-	for(var y=0; y<contentCollection.length; y++){
-		var content = contentCollection.at(y);
+	if(contentCollection.length != 0){
+		var dateArr = [];
+		for(var y=0; y<contentCollection.length; y++){
+			var data = contentCollection.at(y);
+			
+			var id = data.get('content_id');
+			var date = data.get('date');
+			var content = data.get('content');
+			var list = Ti.UI.createTableViewRow({
+				'title' : date,
+				'notes': content,
+				'c_id' : id  
+			});
+			list.addEventListener('click', getNotes);
+			dateArr.push(list);
+		}
+		tblView.setData(dateArr);
+		$.viewDiary.add(tblView);
 		
-		var id = content.get('content_id');
-		var date = content.get('date');
-		var list = Ti.UI.createTableViewRow({
-			'title' : date,
-			'c_id' : id  
-		});
-		contentArr.push(list);
-	}
-	//var section = Ti.UI.createTableViewRow();
+	} else { alert("NO RECORD");}
+}
+
+function getNotes(list_evt){
+	var notes = list_evt.source.notes;
+	//var dates = list_evt.source.title;
+	var win = Ti.UI.createWindow({ backgroundImage: '/images/wood.jpg' });
+	var textField = Ti.UI.createTextArea({
+		width: '90%',
+		height: '80%',
+		left: '5%',
+		right: '5%',
+		top: '15%',
+		backgroundColor: 'transparent',
+		backgroundImage: '/images/write.jpeg',
+  		returnKeyType: Ti.UI.RETURNKEY_GO,	
+		value: notes,
+		enabled: false,
+		scrollable: true
+		
+	});
+	var editBtn = Ti.UI.createButton({ top: 20, left: 5, width: 60, height: 60, backgroundImage: '/images/edit1.png'});
+	editBtn.addEventListener('click', function(e){ textField.enabled=true; alert('You may now edit your diary!'); });
+	var val = textField.value;
+	textField.addEventListener('change', function(e){
+		 val = textField.value;
+	});
 	
-	tblView.setData(contentArr);
-	tblView.appendRow(list);
-	$.viewDiary.add(tblView);
-	//tblView.show();
+	var saveBtn = Ti.UI.createButton({ top: 20, left: 50, width: 60, height: 60, backgroundImage: '/images/save.png', });
+	saveBtn.addEventListener('click', function() {saveChanges(val,list_evt.source.title,list_evt.source.c_id);});
+	
+	win.add(editBtn);
+	win.add(saveBtn);
+	
+	win.add(textField);
+	$.viewDiary.close();
+	win.open();
 	
 }
 
+function saveChanges(value,date,id){
+	//var sql = 'SELECT * FROM ' +table+ ' WHERE '
+	
+}
 init();

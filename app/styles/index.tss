@@ -26,7 +26,13 @@
 ".btnAction":{
 	height: '100%',
 	width: '80%',
-	backgroundColor: '#FF6633'
+	color: '#FF6633',
+	font : {
+		fontFamily : 'Helvetica',
+		fontSize : 20,
+		fontStyle : 'normal',
+		fontWeight : 'bold'		
+	}
 	
 },
 "#btnviewContainer":{
@@ -39,14 +45,7 @@
 ".action":{
 	width: '50%',
 	height: 44,
-	color: '#FF6633',
-	font : {
-		fontFamily : 'Helvetica',
-		fontSize : 12,
-		fontStyle : 'normal',
-		fontWeight : 'normal'		
-	},
-	style: Titanium.UI.iPhone.SystemButtonStyle.PLAIN
+	
 },
 "#btnView":{
 	backgroundImage: '/images/view-diary1.jpg'

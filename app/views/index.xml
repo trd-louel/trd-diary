@@ -7,7 +7,7 @@
 					<Button title="View Notes" onClick="btnView" class="btnAction" id="btnView"></Button>
 				</View>
 				<View class="action" id="btnaddContainer">
-					<Button title="Add Notes" tintColor="red" class="btnAction" id="btnAdd"></Button>
+					<Button title="Add Notes" class="btnAction" id="btnAdd"></Button>
 				</View>
 			</View>
 		</Window>
