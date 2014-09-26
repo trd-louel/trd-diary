@@ -44,10 +44,11 @@ function saveDiary()
 			{
 				if(dialog_evt.text.trim().length > 0)
 				{
-					saveAuthor(dialog_evt.text.trim());
-					//getNotes();
-					//Titanium.UI.createAlertDialog({title:'Task added',message:'Task added successfully'}).show();
-				}else{
+					
+			
+				}
+				else
+				{
 					Titanium.UI.createAlertDialog({title:'Task not added',message:'Task cannot be empty.'}).show();
 				}
 			}
@@ -59,6 +60,7 @@ function saveDiary()
 		//getToDo();
 			
 		alert('Note added.');
+		$.addDiary.close();
 	}
 	else
 	{
@@ -66,60 +68,3 @@ function saveDiary()
 	}
 	
 }
-
-function saveAuthor(authorName)
-{
-	authorCollection = Alloy.Collections.instance('db_diary');
-	authorCollection.fetch();
-	
-	var authorTemp = Alloy.createModel('db_diary',
-	{
-		'title' : authorName,
-		'id' : id
-	});
-	
-	authorCollection.add(authorTemp);
-	authorTemp.save();
-	
-	/*
-	contentCollection = Alloy.Collections.instance('viewDiary');
-	contentCollection.fetch();
-	
-	var saveModel = Alloy.createModel('viewDiary',
-	{
-		
-	});
-	
-	contentCollection.add(saveModel);
-	saveModel.save();*/
-}
-
-
-
-/*
-function getNotes()
-{
-	contentCollection = Alloy.Collections.instance('viewDiary');
-		contentCollection.fetch({ 
-			query: sql
-		});
-		
-		var sql = 'SELECT * FROM '+table+' WHERE content_id='+id;
-		var dateArr = [];
-		
-		for(var y=0; y<contentCollection.length; y++){
-			var data = contentCollection.at(y);
-			
-			var id = data.get('content_id');
-			var date = data.get('date');
-			var content = data.get('content');
-			var list = Ti.UI.createTableViewRow({
-				'title' : date,
-				'notes': content,
-				'c_id' : id  
-			});
-			//list.addEventListener('click', getNotes);
-			dateArr.push(list);
-		
-}
-*/
