@@ -4,8 +4,8 @@ exports.definition = {
 		adapter:{
 			"type": "sql",
 			"collection_name":"author_info",
-			"db_file": "/db_test.sqlite",
-			"db_name": "db_test",
+			"db_file": "/dbTest.sqlite",
+			"db_name": "dbTest",
 			"idAttribute": "author_id",
 			"remoteBackup":false
 		}

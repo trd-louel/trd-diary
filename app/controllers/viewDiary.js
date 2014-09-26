@@ -4,7 +4,7 @@
 	
 	var contentCollection = Alloy.createCollection('viewDiary');
 	var table = contentCollection.config.adapter.collection_name;
-	contentCollection = Alloy.Collections.instance('viewDiary');
+	
 function init(){
 	getAuthorList();
 }
@@ -25,7 +25,7 @@ function getAuthorList(){
 		var id = info.get('author_id');
 		var row = Ti.UI.createTableViewRow({
 			'title' : name,
-			'c_id' : id
+			'id' : id
 		}); 
 		row.addEventListener('click', getDate);
 		authorArr.push(row);	
@@ -37,13 +37,14 @@ function getAuthorList(){
 }
 
 function getDate(row_evt){
-
+contentCollection = Alloy.Collections.instance('viewDiary');
 	
 	var tblView = Ti.UI.createTableView();
-	var id = row_evt.source.c_id; 
+	var id = row_evt.source.id; 
 	
-	var sql = 'SELECT * FROM ' +table+ ' WHERE content_id=' +id;
+	var sql = 'SELECT * FROM '+table+' WHERE content_id='+id;
 	contentCollection.fetch({ query: sql});
+	alert(contentCollection.length);
 	if(contentCollection.length != 0){
 		var dateArr = [];
 		for(var y=0; y<contentCollection.length; y++){
@@ -69,7 +70,7 @@ function getDate(row_evt){
 function getNotes(list_evt){
 	var notes = list_evt.source.notes;
 	//var dates = list_evt.source.title;
-	var win = Ti.UI.createWindow({ backgroundImage: '/images/wood.jpg' });
+	var win = Ti.UI.createWindow({ backgroundImage: '/images/bg.jpg' });
 	var textField = Ti.UI.createTextArea({
 		width: '90%',
 		height: '80%',
@@ -104,7 +105,7 @@ function getNotes(list_evt){
 }
 
 function saveChanges(value,date,id){
-	//var sql = 'SELECT * FROM ' +table+ ' WHERE '
-	
+
 }
+
 init();
