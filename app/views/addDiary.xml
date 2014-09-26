@@ -1,5 +1,9 @@
 <Alloy>
 	<Window id="addDiary">
+		<TextField id="addTitle"></TextField>
+		<TextArea id="addNotes" ></TextArea>
+		<Button id="addSave"></Button>
+		<Button id="addCancel"></Button>
 		
 	</Window>
 </Alloy>

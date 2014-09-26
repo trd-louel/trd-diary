@@ -1,10 +1,13 @@
 "Window": {
-	backgroundImage: "/images/diary.jpg"
+	backgroundImage: "/images/diary.jpg",
+	title: "Diary"
 },
+
 ".container": {
 	backgroundColor:'white',
 	layout:'vertical'
 },
+
 "Label": {
 	top:'50dp',
 	width: Ti.UI.SIZE,
