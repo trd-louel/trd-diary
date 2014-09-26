@@ -37,7 +37,7 @@ function getAuthorList(){
 }
 
 function getDate(row_evt){
-contentCollection = Alloy.Collections.instance('viewDiary');
+	contentCollection = Alloy.Collections.instance('viewDiary');
 	
 	var tblView = Ti.UI.createTableView();
 	var id = row_evt.source.id; 
@@ -85,16 +85,20 @@ function getNotes(list_evt){
 		scrollable: true
 		
 	});
-	var editBtn = Ti.UI.createButton({ top: 20, left: 5, width: 60, height: 60, backgroundImage: '/images/edit1.png'});
-	editBtn.addEventListener('click', function(e){ textField.enabled=true; alert('You may now edit your diary!'); });
 	var val = textField.value;
-	textField.addEventListener('change', function(e){
-		 val = textField.value;
-	});
+	textField.addEventListener('change', function(e){ val = textField.value;});
 	
-	var saveBtn = Ti.UI.createButton({ top: 20, left: 50, width: 60, height: 60, backgroundImage: '/images/save.png', });
+	var backBtn = Ti.UI.createButton({ top: 20, left: 5, width: 60, height: 60, backgroundImage: '/images/back-button.png', });
+	backBtn.addEventListener('click', function(e){ win.close(); $.viewDiary.open(); });
+	
+	var editBtn = Ti.UI.createButton({ top: 20, left: 50, width: 60, height: 60, backgroundImage: '/images/edit1.png'});
+	editBtn.addEventListener('click', function(e){ textField.enabled=true; alert('You may now edit your diary!'); });
+	
+
+	var saveBtn = Ti.UI.createButton({ top: 20, left: 100, width: 60, height: 60, backgroundImage: '/images/save.png', });
 	saveBtn.addEventListener('click', function() {saveChanges(val,list_evt.source.title,list_evt.source.c_id);});
 	
+	win.add(backBtn);
 	win.add(editBtn);
 	win.add(saveBtn);
 	
@@ -105,6 +109,9 @@ function getNotes(list_evt){
 }
 
 function saveChanges(value,date,id){
+	contentCollection = Alloy.Collections.instance('viewDiary');
+	
+	
 
 }
 
