@@ -32,16 +32,19 @@
 
 "#addSave":
 {
-	image: "/images/imageAdd.png",
+	backgroundImage: "/images/imgAdd.png",
 	height: "5%",
-	width: "5%",
+	width: "7%",
+	bottom:"8%",
+	right: "20%",
 },
 
 "#addCancel":
 {
-	image: "/images/imageCancel.png",
+	backgroundImage: "/images/imgCancel.png",
 	height: "5%",
-	width: "5%",
+	width: "7%",
+	bottom: '8%',
+	right: "10%",
 },
-
 

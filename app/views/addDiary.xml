@@ -2,8 +2,9 @@
 	<Window id="addDiary">
 		<TextField id="addTitle"></TextField>
 		<TextArea id="addNotes" ></TextArea>
-		<Button id="addSave"></Button>
-		<Button id="addCancel"></Button>
+		<Label text="getDate"> </Label>
+		<Button id="addSave" onClick="saveDiary"></Button>
+		<Button id="addCancel" onClick="back"></Button>
 		
 	</Window>
 </Alloy>
