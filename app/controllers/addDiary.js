@@ -4,34 +4,88 @@ var table1 = authorCollection.config.adapter.collection_name;
 var contentCollection = Alloy.createCollection('viewDiary');
 var table = contentCollection.config.adapter.collection_name;
 
-function getDate(i)
+function getDate() 
 {
-	if(i>=0&&i<=11)
-	{
-		var monthStrArr = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-		return monthStrArr[i];
-	}
-	else
-	{
-		return '-';
-	}
+    var currentTime = new Date();
+    var hours = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+    var month = currentTime.getMonth() + 1;
+    var day = currentTime.getDate();
+    var year = currentTime.getFullYear();
+ 
+ 	switch(month)
+ 	{
+ 		case 1:
+ 		case 01:
+ 			month = "January";
+ 			break;
+ 		case 2:
+ 		case 02:
+ 			month = "February";
+ 			break;
+ 		case 3:
+ 		case 03:
+ 			month = "March";
+ 			break;
+ 		case 4:
+ 		case 04:
+ 			month = "April";
+ 			break;
+ 		case 5:
+ 		case 05:
+ 			month = "May";
+ 			break;
+ 		case 6:
+ 		case 06:
+ 			month = "June";
+ 			break;
+ 		case 7:
+ 		case 07:
+ 			month = "July";
+ 			break;
+ 		case 8:
+ 		case 08:
+ 			month = "August";
+ 			break;
+ 		case 9:
+ 		case 09:
+ 			month = "September";
+ 			break;
+ 		case 10:
+ 			month = "October";
+ 			break;
+ 		case 11:
+ 			month = "November";
+ 			break;
+ 		case 12:
+ 			month = "December";
+ 	}
+ 	
+	 	if (day < 10)
+	 	{
+	 		day = "0" + day;
+	 	}
+		if (hours < 10) 
+		{ 
+			hours = "0" + hours;
+		}
+		 
+		if (minutes < 10) 
+		{ 
+			minutes = "0" + minutes;
+		}
+
+	return month + " " + day + ", " + year + " -  " + hours + ":" + minutes;
 }
 
-function back(e) 
-{
-	$.addDiary.close();
-}
+$.addTitle.value = getDate();
 
 function saveDiary()
 {
-	var header = $.addTitle.value;
 	var note = $.addNotes.value;
 	
-	if(note.trim().length > 0 && header.trim().length > 0)
+	if(note.trim().length > 0)
 	{
-		var newDate = new Date();
-		
-		//add codes here
 		var dialog = Ti.UI.createAlertDialog({
 			title		: 'Author Name',
 			style		: Ti.UI.iPhone.AlertDialogStyle.PLAIN_TEXT_INPUT,
@@ -44,21 +98,19 @@ function saveDiary()
 			{
 				if(dialog_evt.text.trim().length > 0)
 				{
+					var contentID = 1;
 					
-			
-				}
-				else
-				{
-					Titanium.UI.createAlertDialog({title:'Task not added',message:'Task cannot be empty.'}).show();
+					var db = Ti.Database.open('db3');
+					var sql = "INSERT INTO author_info (author_id, name) VALUES (?, ?);";
+					db.execute(sql, null, dialog_evt.text);
+					
+					var sql2 = "INSERT INTO contents (id, content_id, date, content) VALUES (?, ? ,?, ?);";
+					db.execute(sql2, null, null, $.addTitle.value, note);
 				}
 			}
 		});
 		dialog.show();
 	
-	
-		//saveNotes(note.text.trim());
-		//getToDo();
-			
 		alert('Note added.');
 		$.addDiary.close();
 	}

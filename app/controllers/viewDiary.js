@@ -91,7 +91,7 @@ function getDate(nameBtn_evt){
 	var tblView = Ti.UI.createTableView();
 	var sql = 'SELECT * FROM '+table+' WHERE content_id='+id;
 	contentCollection.fetch({ query: sql});
-	
+	alert(contentCollection.length);
 	if(contentCollection.length != 0){
 		var dateArr = [];
 		for(var y=0; y<contentCollection.length; y++){

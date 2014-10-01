@@ -1,10 +1,9 @@
 "Window": {
-	backgroundImage: "/images/diary.jpg"
+	backgroundImage: "/images/bg.jpg",
+	barColor: "#FFB591",
+	title: "Home"
 },
-".container": {
-	backgroundColor:'white',
-	layout:'vertical'
-},
+
 "Label": {
 	top:'50dp',
 	width: Ti.UI.SIZE,
@@ -18,39 +17,22 @@
 	color: 'black'
 },
 
-".actions":{
-	bottom: 0,
-	height: 44,
-	backgroundColor: '#FFCCFF'
+"#btnAdd":
+{	
+	color: "#000000",
+	width: "30%",
+	height: "23%",
+	center: true,
+	top: "15%"
 },
-".btnAction":{
-	height: '100%',
-	width: '80%',
-	color: '#FF6633',
-	font : {
-		fontFamily : 'Helvetica',
-		fontSize : 20,
-		fontStyle : 'normal',
-		fontWeight : 'bold'		
-	}
-	
+
+"#btnView":
+{
+	color: "#000000",
+	width: "30%",
+	height: "23%",
+	center: true,
+	top: "50%",
 },
-"#btnviewContainer":{
-	left: 0,
-},
-"#btnaddContainer":{
-	left: '50%',
-	right: '2%'
-},
-".action":{
-	width: '50%',
-	height: 44,
-	
-},
-"#btnView":{
-	backgroundImage: '/images/view-diary1.jpg'
-},
-"#btnAdd":{
-	backgroundImage: '/images/add-diary.jpg'
-}
+
 
