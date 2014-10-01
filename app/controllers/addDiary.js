@@ -4,7 +4,8 @@ var table1 = authorCollection.config.adapter.collection_name;
 var contentCollection = Alloy.createCollection('viewDiary');
 var table = contentCollection.config.adapter.collection_name;
 
-function getDate() {
+function getDate() 
+{
     var currentTime = new Date();
     var hours = currentTime.getHours();
     var minutes = currentTime.getMinutes();
@@ -60,25 +61,24 @@ function getDate() {
  			month = "December";
  	}
  	
-	if (hours < 10) 
-	{ 
-		hours = "0" + hours;
-	}
-	 
-	if (minutes < 10) 
-	{ 
-		minutes = "0" + minutes;
-	}
+	 	if (day < 10)
+	 	{
+	 		day = "0" + day;
+	 	}
+		if (hours < 10) 
+		{ 
+			hours = "0" + hours;
+		}
+		 
+		if (minutes < 10) 
+		{ 
+			minutes = "0" + minutes;
+		}
 
 	return month + " " + day + ", " + year + " -  " + hours + ":" + minutes;
 }
 
 $.addTitle.value = getDate();
-
-function viewDiary(e) 
-{
-	//$.addDiary.close();
-}
 
 function saveDiary()
 {
@@ -101,8 +101,9 @@ function saveDiary()
 			{
 				if(dialog_evt.text.trim().length > 0)
 				{
-					
-			
+					var db = Ti.Database.open('db3');
+					var sql = "INSERT INTO author_info (author_id, name) VALUES (?, ?);";
+					db.execute(sql, null, dialog_evt.text);
 				}
 				else
 				{
@@ -112,12 +113,8 @@ function saveDiary()
 		});
 		dialog.show();
 	
-	
-		//saveNotes(note.text.trim());
-		//getToDo();
-			
 		alert('Note added.');
-		$.addDiary.close();
+		//$.addDiary.close();
 	}
 	else
 	{
