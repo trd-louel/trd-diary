@@ -98,17 +98,14 @@ function saveDiary()
 			{
 				if(dialog_evt.text.trim().length > 0)
 				{
+					var contentID = 1;
+					
 					var db = Ti.Database.open('db3');
 					var sql = "INSERT INTO author_info (author_id, name) VALUES (?, ?);";
 					db.execute(sql, null, dialog_evt.text);
 					
-					var sql = 'SELECT * FROM '+table+' WHERE content_id='+id;
-					var sql2 = "INSERT INTO contents (id, content_id, date, content) VALUES (?, ?, ? ,?);";
-					db2.execute(sql2, null, null, $.addTitle.value, note);
-				}
-				else
-				{
-					Titanium.UI.createAlertDialog({title:'Task not added',message:'Task cannot be empty.'}).show();
+					var sql2 = "INSERT INTO contents (id, content_id, date, content) VALUES (?, ? ,?, ?);";
+					db.execute(sql2, null, null, $.addTitle.value, note);
 				}
 			}
 		});
