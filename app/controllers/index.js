@@ -8,6 +8,6 @@ function btnView(e)
 
 function btnAdd(e)
 {
-	 var getDiary = Alloy.createController('addDiary').getView();
+	var getDiary = Alloy.createController('addDiary').getView();
 	$.navigation.openWindow(getDiary);
 }

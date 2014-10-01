@@ -2,14 +2,14 @@
 
 	<NavigationWindow id="navigation">
 		<Window>
+			<ImageView id="btnAdd" onClick="btnAdd" image="/images/appicon.png"/>
 			<View class="actions">
 				<View class="action" id="btnviewContainer">
 					<Button title="View Notes" onClick="btnView" class="btnAction" id="btnView"></Button>
 				</View>
-				<View class="action" id="btnaddContainer">
-					<Button title="Add Notes" class="btnAction" id="btnAdd" onClick="btnAdd"></Button>
-				</View>
+				
 			</View>
+
 		</Window>
 	</NavigationWindow>
 	

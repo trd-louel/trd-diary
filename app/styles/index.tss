@@ -39,11 +39,6 @@
 	left: 0,
 },
 
-"#btnaddContainer":{
-	left: '50%',
-	right: '2%'
-},
-
 ".action":{
 	width: '50%',
 	height: 44,
@@ -58,10 +53,12 @@
 	
 },
 
-"#btnAdd":{
-
-	backgroundColor: "#FFB591",
+"#btnAdd":
+{	
 	color: "#000000",
-	width: "100%",
+	width: "30%",
+	height: "23%",
+	center: true,
+	top: "20%"
 }
 
