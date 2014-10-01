@@ -11,10 +11,15 @@ function init(){
 
 function getAuthorList(){
 	
+	
 	authorCollection = Alloy.Collections.instance('db_diary');
 	var tblView1 = Ti.UI.createTableView();
 	var sql = 'SELECT * FROM ' +table1;	
 	authorCollection.fetch({ query: sql});
+	
+	
+	
+	
 	
 	var authorArr = [];
 	for(var x=0; x<authorCollection.length; x++){
@@ -24,27 +29,69 @@ function getAuthorList(){
 		var name = info.get('name');
 		var id = info.get('author_id');
 		var row = Ti.UI.createTableViewRow({
-			'title' : name,
-			'id' : id
+			'id': id,
+			Width: '80%'
 		}); 
-		row.addEventListener('click', getDate);
-		authorArr.push(row);	
+		
+		var nameBtn =Titanium.UI.createButton({ 'id': id, title: name, left:0  });
+		
+		var delUser =Titanium.UI.createButton({ 'id': id, backgroundImage:'/images/delete_user.png', right:0,  });
+		
+		row.add(delUser);
+		row.add(nameBtn);
+		
+		delUser.addEventListener('click', deleteDialog);
+		nameBtn.addEventListener('click', getDate);
+		authorArr.push(row);
+	
 	}
+	
 	tblView1.setData(authorArr);
 	$.viewDiary.add(tblView1);	
 	return false;
 	
 }
 
-function getDate(row_evt){
+function deleteDialog(delUser_evt){
+	
+	var alertDialog = Ti.UI.createAlertDialog({ 
+					title: 'Delete ',
+					message: 'Are you sure?',
+					buttonNames: ['Delete Anyway','Cancel'],
+					cancel:1
+					});
+	alertDialog.addEventListener('click', function(alertDialog_evt){
+		if(alertDialog_evt.index === 0){
+			removeUser(delUser_evt.source.id);
+			getAuthorList();
+		}
+	});
+	alertDialog.show();
+	
+	return false;
+}
+
+function removeUser(id){
+	authorCollection = Alloy.Collections.instance('db_diary');
+	var sql = 'SELECT * FROM '+table1+ ' WHERE author_id='+id;
+	alert(sql);
+	authorCollection.fetch({ query: sql});
+	if(authorCollection.length>0){
+		var model = authorCollection.at(0);
+		model.destroy();
+	}
+	return false;
+}
+
+function getDate(nameBtn_evt){
+	alert(nameBtn_evt.source.id);
+	id= nameBtn_evt.source.id;
 	contentCollection = Alloy.Collections.instance('viewDiary');
 	
 	var tblView = Ti.UI.createTableView();
-	var id = row_evt.source.id; 
-	
 	var sql = 'SELECT * FROM '+table+' WHERE content_id='+id;
 	contentCollection.fetch({ query: sql});
-	alert(contentCollection.length);
+	
 	if(contentCollection.length != 0){
 		var dateArr = [];
 		for(var y=0; y<contentCollection.length; y++){
@@ -65,6 +112,7 @@ function getDate(row_evt){
 		$.viewDiary.add(tblView);
 		
 	} else { alert("NO RECORD");}
+	return false;
 }
 
 function getNotes(list_evt){
@@ -96,7 +144,7 @@ function getNotes(list_evt){
 	
 
 	var saveBtn = Ti.UI.createButton({ top: 20, left: 100, width: 60, height: 60, backgroundImage: '/images/save.png', });
-	saveBtn.addEventListener('click', function() {saveChanges(val,list_evt.source.title,list_evt.source.c_id);});
+	saveBtn.addEventListener('click', function() {saveChanges(val,list_evt.source.title,list_evt.source.c_id,list_evt.source);});
 	
 	win.add(backBtn);
 	win.add(editBtn);
@@ -105,14 +153,23 @@ function getNotes(list_evt){
 	win.add(textField);
 	$.viewDiary.close();
 	win.open();
-	
+	return false;
 }
 
-function saveChanges(value,date,id){
+function saveChanges(value,date,id,list_evt){
 	contentCollection = Alloy.Collections.instance('viewDiary');
-	
-	
-
+	var sql = 'SELECT * FROM ' +table+ ' WHERE content_id="' +id+ '" AND date="' +date+'"';
+	contentCollection.fetch({ query: sql});
+		
+		var model = contentCollection.at(0);
+		model.set({
+			'content': value
+		}).save();
+		if(contentCollection){
+		alert('Successfully Updated!');
+		getNotes(list_evt);
+		}
+		return false;
 }
 
 init();
