@@ -111,7 +111,7 @@ function saveDiary()
 		});
 		dialog.show();
 	
-		//alert('Note added.');
+		alert('Note added.');
 		$.addDiary.close();
 	}
 	else
