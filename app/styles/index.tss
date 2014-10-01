@@ -17,48 +17,22 @@
 	color: 'black'
 },
 
-".actions":{
-	bottom: 0,
-	height: 44,
-	backgroundColor: '#FFCCFF'
-},
-".btnAction":{
-	height: '100%',
-	width: '80%',
-	color: '#FF6633',
-	font : 
-	{
-		fontFamily : 'Helvetica',
-		fontSize : 20,
-		fontStyle : 'normal',
-		fontWeight : 'bold'		
-	}
-	
-},
-"#btnviewContainer":{
-	left: 0,
-},
-
-".action":{
-	width: '50%',
-	height: 44,
-},
-
-"#btnView":
-{
-
-	backgroundColor: "#FFB591",
-	color: "#000000",
-	width: "100%",
-	
-},
-
 "#btnAdd":
 {	
 	color: "#000000",
 	width: "30%",
 	height: "23%",
 	center: true,
-	top: "20%"
-}
+	top: "15%"
+},
+
+"#btnView":
+{
+	color: "#000000",
+	width: "30%",
+	height: "23%",
+	center: true,
+	top: "50%",
+},
+
 
