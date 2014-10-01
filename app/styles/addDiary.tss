@@ -2,25 +2,24 @@
 {
 	title: "Diary",
 	backgroundColor: 'white',
-	backgroundImage: "/images/bg.jpg"
-	//ff9966
+	backgroundImage: "/images/bg.jpg",
+	barColor: "#FFB591"
 },
 
 "#addTitle":
 {
-	hintText: "Title",
 	//borderColor: "#000000",
 	height: "10%",
 	width: "90%",
 	top:"5%",
-	//color: "#000000",
+	color: "#000000",
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
-	backgroundImage: "/images/titleBG.png"
+	backgroundImage: "/images/titleBG.png",
+	editable: false
 },
 
 "#addNotes":
 {
-	hintText: "Write your notes here",
 	backgroundColor: "transparent",
 	//borderColor: '#000000',
 	height: "80%",

@@ -1,6 +1,8 @@
 "Window": {
-	backgroundImage: "/images/diary.jpg"
+	backgroundImage: "/images/diary.jpg",
+	barColor: "#FFB591"
 },
+
 ".container": {
 	backgroundColor:'white',
 	layout:'vertical'
