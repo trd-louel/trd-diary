@@ -113,8 +113,8 @@ function saveDiary()
 		});
 		dialog.show();
 	
-		alert('Note added.');
-		//$.addDiary.close();
+		//alert('Note added.');
+		$.addDiary.close();
 	}
 	else
 	{
